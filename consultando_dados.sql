@@ -64,3 +64,9 @@ FULL JOIN Pedidos p
 ON c.id = p.idClient
 WHERE c.id IS NULL;
 
+--consultas views e trigers
+SELECT c.nome, pd.id, SUM(ip.precoUnitario)
+FROM Pedidos pd
+JOIN itensPedidos ip ON pd.id = ip.idPedido
+JOIN Clientes c ON c.id = pd.idClient
+GROUP BY c.nome, pd.id
