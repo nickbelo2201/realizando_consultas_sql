@@ -94,3 +94,7 @@ INSERT INTO Clientes('id', 'nome', 'telefone', 'endereco')
 VALUES
 (26, 'Helena Lima', '1315551234', 'Avenida dos Sonhos, 234, Cidade M'),
 (27, 'Paulo Sousa', '1415555678', 'Travessa das Marés, 876, Cidade N');
+
+INSERT INTO Clientes (id, Nome, Telefone, Email, Endereco)
+VALUES (28, 'João Santos', '215555678', 'joao.santos@email.com', 'Avenida Principal, 456, Cidade B'),
+       (29, 'Carla Ferreira', '315557890', 'carla.ferreira@email.com', 'Travessa das Ruas, 789, Cidade C');

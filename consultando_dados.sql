@@ -28,3 +28,39 @@ HAVING preco > (
     SELECT AVG(preco) 
     FROM produtos 
 );
+
+--consultando com JOIN
+--INNER JOIN
+SELECT *
+FROM Clientes c 
+INNER JOIN Pedidos p
+ON c.id = p.idClient;
+
+--RIGTH JOIN
+SELECT x.nome, x.descricao, x.preco, x.categoria, ip.quantidade 
+FROM (
+    SELECT pr.id, pd.idClient, pr.nome, pr.descricao, pr.preco, pr.categoria
+    FROM Produtos pr
+    JOIN Pedidos pd
+    ON pr.id = pd.idClient
+    WHERE strftime('%m', dataHoraPedido) = '10') x
+RIGHT JOIN itenspedidos ip
+ON ip.idProduto = x.id;
+
+--LEFT JOIN
+SELECT *
+FROM clientes c
+LEFT JOIN (
+    SELECT p.id, p.idClient
+    FROM Pedidos p
+    WHERE strftime('%m', dataHoraPedido) = '10' ) x
+ON x.idClient = x.id
+WHERE x.idClient IS NULL;
+
+--FULL JOIN
+SELECT c.nome, c.id, p.idClient 
+FROM Clientes c 
+FULL JOIN Pedidos p 
+ON c.id = p.idClient
+WHERE c.id IS NULL;
+
