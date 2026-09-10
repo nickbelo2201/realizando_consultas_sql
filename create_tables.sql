@@ -12,6 +12,7 @@ DROP TABLE IF EXISTS Clientes;
 DROP TABLE IF EXISTS Fornecedores;
 DROP TABLE IF EXISTS Colaboradores;
 DROP TABLE IF EXISTS produtos;
+DROP TABLE IF EXISTS faturamentoDiario;
 
 CREATE TABLE produtos(
     id TEXT PRIMARY KEY,
@@ -73,3 +74,8 @@ CREATE TABLE Clientes (
     FOREIGN KEY (idPedido) REFERENCES Pedidos(id) ON DELETE CASCADE,
     FOREIGN KEY (idProduto) REFERENCES Produtos(id) ON DELETE CASCADE
  );
+
+ CREATE TABLE faturamentoDiario (
+    data DATE,
+    valor DECIMAL(10, 2)
+);

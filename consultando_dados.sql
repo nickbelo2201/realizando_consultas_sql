@@ -64,9 +64,26 @@ FULL JOIN Pedidos p
 ON c.id = p.idClient
 WHERE c.id IS NULL;
 
---consultas views e trigers
+--criando consulta total gasto de cliente por pedido
 SELECT c.nome, pd.id, SUM(ip.precoUnitario)
 FROM Pedidos pd
 JOIN itensPedidos ip ON pd.id = ip.idPedido
 JOIN Clientes c ON c.id = pd.idClient
 GROUP BY c.nome, pd.id
+
+--criando consulta total gasto por cliente
+SELECT c.nome, p.idClient, SUM(ip.precoUnitario) AS totalGasto
+FROM Clientes c
+JOIN Pedidos p ON c.id = p.idClient
+JOIN itensPedidos ip ON p.id = ip.idPedido 
+GROUP BY c.nome, c.id
+
+--criando consulta para media de gastos por cliente
+SELECT c.id, c.nome, c.telefone, ROUND(AVG(ip.precoUnitario), 2)
+FROM Clientes c
+JOIN Pedidos p ON c.id = p.idClient
+JOIN itensPedidos ip ON p.id = ip.idPedido 
+GROUP BY c.nome, c.id
+
+
+
