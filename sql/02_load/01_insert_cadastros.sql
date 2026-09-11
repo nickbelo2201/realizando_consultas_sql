@@ -1,3 +1,5 @@
+-- 01_insert_cadastros.sql — carga via INSERT: Colaboradores, Fornecedores, Produtos e Clientes.
+
 INSERT INTO Colaboradores('id', 'nome', 'cargo', 'data_contratacao', 'telefone', 'email', 'rua', 'bairro', 'cidade', 'estado', 'cep') 
 VALUES 
 (1, 'Carlos Silva', 'Gerente', '2022-03-15', '115551234', 'carlos.silva@email.com', 'Rua do Comércio - 258', 'Centro', 'São Paulo', 'SP', '01000001'),
@@ -98,12 +100,3 @@ VALUES
 INSERT INTO Clientes (id, Nome, Telefone, Email, Endereco)
 VALUES (28, 'João Santos', '215555678', 'joao.santos@email.com', 'Avenida Principal, 456, Cidade B'),
        (29, 'Carla Ferreira', '315557890', 'carla.ferreira@email.com', 'Travessa das Ruas, 789, Cidade C');
-
-INSERT INTO faturamentoDiario
-SELECT DATE(dataHoraPedido) AS data,
-       SUM(ip.precoUnitario) AS valor
-FROM pedidos p 
-JOIN itensPedidos ip
-ON p.id = ip.idPedido
-GROUP BY data
-ORDER BY data;
